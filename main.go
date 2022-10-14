@@ -25,10 +25,10 @@ const (
 func init() {
 	flag.Usage = usage
 
-	flagAPIKEY := flag.String("apikey", "", "Required: Steamworks Web API key")
+	flagAPIKEY := flag.String("apikey", "", "Required: Steamworks Web API key [env: WSDL_APIKEY]")
 	flagHELP := flag.Bool("help", false, "Displays this help message")
-	flagPREFIX := flag.String("prefix", "."+string(os.PathSeparator)+"workshop", "path to the <gamedir>/addons/workshop folder")
-	flagMANIFEST := flag.String("manifest", "workshopmanifest.json", "filename to store the current state of downloaded files (will be stored in prefix)")
+	flagPREFIX := flag.String("prefix", "."+string(os.PathSeparator)+"workshop", "path to the <gamedir>/addons/workshop folder [env: WSDL_PREFIX]")
+	flagMANIFEST := flag.String("manifest", "workshopmanifest.json", "filename to store the current state of downloaded files (will be stored in prefix) [env: WSDL_MANIFEST]")
 
 	envAPIKEY := os.Getenv("WSDL_APIKEY")
 	envPREFIX := os.Getenv("WSDL_PREFIX")
@@ -92,7 +92,7 @@ func usage() {
 
 	flag.PrintDefaults()
 
-	fmt.Fprintf(os.Stderr, "   <id> string\n        Required: one or more Steamworks collection(s) or file ID(s) to download\n")
+	fmt.Fprintf(os.Stderr, "   <id> string\n        Required: one or more Steamworks collection(s) or file ID(s) to download (space seperated) [env: WSDL_SEEDS]\n")
 	fmt.Fprintf(os.Stderr, "\nPlease visit %s for source code and more information\n\n", REPOURL)
 }
 
